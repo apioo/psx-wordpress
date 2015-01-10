@@ -6,9 +6,9 @@ PSX Wordpress gateway
 
 This project is only a sample how you could build an REST API around an existing
 application with PSX. In this case we choose Wordpress but this sample is 
-applicable to every other application. The project provides an REST API to 
-retrieve and create an post. Also an documentation with examples is available. 
-More informations about PSX at http://phpsx.org.
+applicable to every other application. The project provides an Oauth2 protected 
+REST API to retrieve and create/update/delete an post. Also an documentation 
+with examples is available. More informations about PSX at http://phpsx.org.
 
 ## Installation
 
