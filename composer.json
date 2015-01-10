@@ -1,0 +1,23 @@
+{
+  "name": "psx/wordpress-gateway",
+  "description": "PSX wordpress gateway",
+  "homepage": "http://phpsx.org",
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Christoph Kappestein",
+      "email": "k42b3.x@gmail.com",
+      "homepage": "http://k42b3.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.3",
+    "psx/psx": "dev-master",
+    "hautelook/phpass": "0.3.3"
+  },
+  "autoload": {
+    "psr-0": {
+      "WordpressGateway\\": "src/"
+    }
+  }
+}

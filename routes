@@ -1,0 +1,17 @@
+
+# developer page
+GET                 /                            WordpressGateway\Website\Application\Index::doIndex
+GET                 /doc/:version/*path          WordpressGateway\Website\Application\Index::doDetail
+GET                 /doc-meta/welcome            WordpressGateway\Website\Application\Doc\Welcome
+GET                 /doc-meta/authentication     WordpressGateway\Website\Application\Doc\Authentication
+GET                 /doc-meta/error-handling     WordpressGateway\Website\Application\Doc\ErrorHandling
+
+# API
+GET|POST|PUT|DELETE /api/posts                   WordpressGateway\Api\Posts\Endpoint\Collection
+GET                 /api/posts/:id               WordpressGateway\Api\Posts\Endpoint\Entity
+GET|POST            /api/token                   WordpressGateway\Api\Authentication\Endpoint\Token
+
+# tool controller
+GET                 /tool/rest                   PSX\Controller\Tool\RestController
+GET                 /tool/wsdl/:version/*path    PSX\Controller\Tool\WsdlGeneratorController
+GET                 /tool/swagger/:version/*path PSX\Controller\Tool\SwaggerGeneratorController

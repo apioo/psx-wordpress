@@ -1,0 +1,13 @@
+
+<h1>Welcome,</h1>
+
+<p>this is the <a href="http://phpsx.org">PSX</a> Worpress sample project. This
+project should showcase how you can easily build an REST API with PSX around an
+existing application.</p>
+
+<p>The API provides the following endpoints:</p>
+
+<ul>
+	<li><a href="<?php echo $router->getUrl('WordpressGateway\Api\Posts\Endpoint\Collection'); ?>"><?php echo $router->getAbsolutePath('WordpressGateway\Api\Posts\Endpoint\Collection'); ?></a></li>
+	<li><a href="<?php echo $router->getUrl('WordpressGateway\Api\Posts\Endpoint\Entity', array('id' => 1)); ?>"><?php echo $router->getAbsolutePath('WordpressGateway\Api\Posts\Endpoint\Entity', array('id' => 1)); ?></a></li>
+</ul>
