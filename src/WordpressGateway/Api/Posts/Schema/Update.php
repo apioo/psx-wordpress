@@ -9,7 +9,7 @@ class Update extends SchemaAbstract
 	public function getDefinition()
 	{
 		$entry = $this->getSchema('WordpressGateway\Api\Posts\Schema\Post');
-		$entry->getChild('id')->setRequired(true);
+		$entry->get('id')->setRequired(true);
 
 		return $entry;
 	}

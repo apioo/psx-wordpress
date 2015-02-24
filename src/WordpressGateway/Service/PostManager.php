@@ -52,7 +52,7 @@ class PostManager
 	{
 		$post = $this->postTable->get($record->getId());
 
-		if(!$post instanceof RecordInterface)
+		if(empty($post))
 		{
 			throw new HttpException\NotFoundException('Post does not exist');
 		}
@@ -64,7 +64,7 @@ class PostManager
 		$status  = $record->getStatus();
 
 		$fields = array(
-			'ID'                => $record->getId(),
+			'ID'                => $post['ID'],
 			'post_author'       => $authorId,
 			'post_modified'     => new DateTime(),
 			'post_modified_gmt' => new DateTime(),
@@ -92,7 +92,7 @@ class PostManager
 	{
 		$post = $this->postTable->get($record->getId());
 
-		if(!$post instanceof RecordInterface)
+		if(empty($post))
 		{
 			throw new HttpException\NotFoundException('Post does not exist');
 		}

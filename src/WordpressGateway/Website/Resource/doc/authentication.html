@@ -31,7 +31,7 @@ Content-Type: application/json
 
 <p>You can use the access token to create i.e. an new post</p>
 
-<pre><code class="http">POST <?php echo $router->getAbsolutePath('WordpressGateway\Api\Authentication\Endpoint\Token'); ?> HTTP/1.1
+<pre><code class="http">POST <?php echo $router->getAbsolutePath('WordpressGateway\Api\Posts\Endpoint\Collection'); ?> HTTP/1.1
 User-Agent: Lynx 2.8.7
 Connection: Keep-Alive
 Authorization: Bearer 1ab55cbf3eaedd86d87547111dfe2e8d364ff9e0871b930663e28564ef031f65

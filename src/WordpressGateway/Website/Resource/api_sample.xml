@@ -7,13 +7,7 @@ Connection: Keep-Alive
 
 ]]></sample>
 	<sample path="/api/posts" method="GET" type="response" lang="http"><![CDATA[HTTP/1.1 200 OK
-Date: Wed, 10 Dec 2014 18:50:01 GMT
-Server: Apache/2.4.9 (Win32) OpenSSL/1.0.1g PHP/5.5.11
-Vary: Authorization
-X-Powered-By: psx
 Content-Length: 1251
-Keep-Alive: timeout=5, max=100
-Connection: Keep-Alive
 Content-Type: application/json
 
 {
@@ -34,11 +28,9 @@ Content-Type: application/json
 	<sample path="/api/posts" method="POST" type="request" lang="http"><![CDATA[POST /api/posts HTTP/1.1
 Host: api.wordpress.com
 User-Agent: Lynx 2.8.7
-Connection: Keep-Alive
 Authorization: Bearer 1ab55cbf3eaedd86d87547111dfe2e8d364ff9e0871b930663e28564ef031f65
 Content-Type: application/json
 Content-Length: 75
-Expect: 100-continue
 
 {
     "title": "foo",
@@ -47,13 +39,7 @@ Expect: 100-continue
 }
 ]]></sample>
 	<sample path="/api/posts" method="POST" type="response" lang="http"><![CDATA[HTTP/1.1 201 Created
-Date: Wed, 10 Dec 2014 20:44:42 GMT
-Server: Apache/2.4.9 (Win32) OpenSSL/1.0.1g PHP/5.5.11
-Vary: Authorization
-X-Powered-By: psx
 Content-Length: 59
-Keep-Alive: timeout=5, max=100
-Connection: Keep-Alive
 Content-Type: application/json
 
 {
@@ -64,11 +50,9 @@ Content-Type: application/json
     <sample path="/api/posts" method="PUT" type="request" lang="http"><![CDATA[PUT /api/posts HTTP/1.1
 Host: api.wordpress.com
 User-Agent: Lynx 2.8.7
-Connection: Keep-Alive
 Authorization: Bearer 1ab55cbf3eaedd86d87547111dfe2e8d364ff9e0871b930663e28564ef031f65
 Content-Type: application/json
 Content-Length: 33
-Expect: 100-continue
 
 {
     "id": 10,
@@ -76,13 +60,7 @@ Expect: 100-continue
 }
 ]]></sample>
     <sample path="/api/posts" method="PUT" type="response" lang="http"><![CDATA[HTTP/1.1 200 OK
-Date: Wed, 10 Dec 2014 20:51:01 GMT
-Server: Apache/2.4.9 (Win32) OpenSSL/1.0.1g PHP/5.5.11
-Vary: Authorization
-X-Powered-By: psx
 Content-Length: 59
-Keep-Alive: timeout=5, max=100
-Connection: Keep-Alive
 Content-Type: application/json
 
 {
@@ -93,24 +71,16 @@ Content-Type: application/json
     <sample path="/api/posts" method="DELETE" type="request" lang="http"><![CDATA[DELETE /api/posts HTTP/1.1
 Host: api.wordpress.com
 User-Agent: Lynx 2.8.7
-Connection: Keep-Alive
 Authorization: Bearer 1ab55cbf3eaedd86d87547111dfe2e8d364ff9e0871b930663e28564ef031f65
 Content-Type: application/json
 Content-Length: 13
-Expect: 100-continue
 
 {
     "id": 10
 }
 ]]></sample>
     <sample path="/api/posts" method="DELETE" type="response" lang="http"><![CDATA[HTTP/1.1 200 OK
-Date: Wed, 10 Dec 2014 20:52:24 GMT
-Server: Apache/2.4.9 (Win32) OpenSSL/1.0.1g PHP/5.5.11
-Vary: Authorization
-X-Powered-By: psx
 Content-Length: 59
-Keep-Alive: timeout=5, max=100
-Connection: Keep-Alive
 Content-Type: application/json
 
 {
@@ -125,13 +95,7 @@ Connection: Keep-Alive
 
 ]]></sample>
     <sample path="/api/posts/:id" method="GET" type="response" lang="http"><![CDATA[HTTP/1.1 200 OK
-Date: Wed, 10 Dec 2014 20:54:35 GMT
-Server: Apache/2.4.9 (Win32) OpenSSL/1.0.1g PHP/5.5.11
-Vary: Authorization
-X-Powered-By: psx
 Content-Length: 198
-Keep-Alive: timeout=5, max=100
-Connection: Keep-Alive
 Content-Type: application/json
 
 {

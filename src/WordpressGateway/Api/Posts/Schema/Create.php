@@ -9,9 +9,9 @@ class Create extends SchemaAbstract
 	public function getDefinition()
 	{
 		$entry = $this->getSchema('WordpressGateway\Api\Posts\Schema\Post');
-		$entry->getChild('content')->setRequired(true);
-		$entry->getChild('title')->setRequired(true);
-		$entry->getChild('status')->setRequired(true);
+		$entry->get('content')->setRequired(true);
+		$entry->get('title')->setRequired(true);
+		$entry->get('status')->setRequired(true);
 
 		return $entry;
 	}
