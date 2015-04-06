@@ -2,9 +2,9 @@
 
 namespace WordpressGateway\Api\Posts\Endpoint;
 
-use PSX\Api\Documentation;
+use PSX\Api\Documentation as ApiDocumentation;
 use PSX\Api\Version;
-use PSX\Api\View;
+use PSX\Api\Resource;
 use PSX\Controller\SchemaApiAbstract;
 use PSX\Data\RecordInterface;
 use PSX\Http\Exception as HttpException;
@@ -29,13 +29,60 @@ class Entity extends SchemaApiAbstract
 
 	public function getDocumentation()
 	{
-		$builder = new View\Builder(View::STATUS_ACTIVE, $this->context->get(Context::KEY_PATH));
-		$builder->setGet($this->schemaManager->getSchema('WordpressGateway\Api\Posts\Schema\Post'));
+		$resource = new Resource(Resource::STATUS_ACTIVE, $this->context->get(Context::KEY_PATH));
 
-		return new Documentation\Simple($builder->getView());
+		$resource->addMethod(Resource\Factory::getMethod('GET')
+			->addResponse(200, $this->schemaManager->getSchema('WordpressGateway\Api\Posts\Schema\Post')));
+
+		$resource->addMethod(Resource\Factory::getMethod('PUT')
+			->setRequest($this->schemaManager->getSchema('WordpressGateway\Api\Posts\Schema\Post'))
+			->addResponse(200, $this->schemaManager->getSchema('WordpressGateway\Api\Posts\Schema\Message')));
+
+		$resource->addMethod(Resource\Factory::getMethod('DELETE')
+			->addResponse(200, $this->schemaManager->getSchema('WordpressGateway\Api\Posts\Schema\Message')));
+
+
+		return new ApiDocumentation\Simple($resource);
 	}
 
 	protected function doGet(Version $version)
+	{
+		return $this->getPost();
+	}
+
+	protected function doCreate(RecordInterface $record, Version $version)
+	{
+	}
+
+	protected function doUpdate(RecordInterface $record, Version $version)
+	{
+		$post = $this->getPost();
+
+		$record->setId($post['id']);
+
+		$this->postManager->update($this->userId, $record);
+
+		return array(
+			'success' => true,
+			'message' => 'Update successful',
+		);
+	}
+
+	protected function doDelete(RecordInterface $record, Version $version)
+	{
+		$post = $this->getPost();
+
+		$record->setId($post['id']);
+
+		$this->postManager->delete($this->userId, $record);
+
+		return array(
+			'success' => true,
+			'message' => 'Delete successful',
+		);
+	}
+
+	protected function getPost()
 	{
 		$post = $this->postManager->getPostById($this->getUriFragment('id'));
 
@@ -45,17 +92,5 @@ class Entity extends SchemaApiAbstract
 		}
 
 		return $post;
-	}
-
-	protected function doCreate(RecordInterface $record, Version $version)
-	{
-	}
-
-	protected function doUpdate(RecordInterface $record, Version $version)
-	{
-	}
-
-	protected function doDelete(RecordInterface $record, Version $version)
-	{
 	}
 }

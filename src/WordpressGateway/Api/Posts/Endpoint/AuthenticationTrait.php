@@ -6,8 +6,9 @@ use WordpressGateway\Authentication\AuthenticationFilter;
 use PSX\Dispatch\Filter\Condition\RequestMethodChoice;
 
 /**
- * Simple trait which adds the authentication filter. Can be used on every 
- * controller where authentication is needed
+ * Simple trait which adds the authentication filter. Authentication is only 
+ * requried for POST, PUT and DELETE. Can be used on every controller where 
+ * authentication is needed
  */
 trait AuthenticationTrait
 {

@@ -2,9 +2,9 @@
 
 namespace WordpressGateway\Api\Posts\Endpoint;
 
-use PSX\Api\Documentation;
+use PSX\Api\Documentation as ApiDocumentation;
 use PSX\Api\Version;
-use PSX\Api\View;
+use PSX\Api\Resource;
 use PSX\Controller\SchemaApiAbstract;
 use PSX\Data\RecordInterface;
 use PSX\Loader\Context;
@@ -28,15 +28,16 @@ class Collection extends SchemaApiAbstract
 
 	public function getDocumentation()
 	{
-		$message = $this->schemaManager->getSchema('WordpressGateway\Api\Posts\Schema\Message');
+		$resource = new Resource(Resource::STATUS_ACTIVE, $this->context->get(Context::KEY_PATH));
 
-		$builder = new View\Builder(View::STATUS_ACTIVE, $this->context->get(Context::KEY_PATH));
-		$builder->setGet($this->schemaManager->getSchema('WordpressGateway\Api\Posts\Schema\Collection'));
-		$builder->setPost($this->schemaManager->getSchema('WordpressGateway\Api\Posts\Schema\Create'), $message);
-		$builder->setPut($this->schemaManager->getSchema('WordpressGateway\Api\Posts\Schema\Update'), $message);
-		$builder->setDelete($this->schemaManager->getSchema('WordpressGateway\Api\Posts\Schema\Delete'), $message);
+		$resource->addMethod(Resource\Factory::getMethod('GET')
+			->addResponse(200, $this->schemaManager->getSchema('WordpressGateway\Api\Posts\Schema\Collection')));
 
-		return new Documentation\Simple($builder->getView());
+		$resource->addMethod(Resource\Factory::getMethod('POST')
+			->setRequest($this->schemaManager->getSchema('WordpressGateway\Api\Posts\Schema\Create'))
+			->addResponse(201, $this->schemaManager->getSchema('WordpressGateway\Api\Posts\Schema\Message')));
+
+		return new ApiDocumentation\Simple($resource);
 	}
 
 	protected function doGet(Version $version)
@@ -58,21 +59,9 @@ class Collection extends SchemaApiAbstract
 
 	protected function doUpdate(RecordInterface $record, Version $version)
 	{
-		$this->postManager->update($this->userId, $record);
-
-		return array(
-			'success' => true,
-			'message' => 'Update successful',
-		);
 	}
 
 	protected function doDelete(RecordInterface $record, Version $version)
 	{
-		$this->postManager->delete($this->userId, $record);
-
-		return array(
-			'success' => true,
-			'message' => 'Delete successful',
-		);
 	}
 }
