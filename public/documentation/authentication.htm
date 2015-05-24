@@ -4,7 +4,8 @@
 <p>In order to create, update or delete an entry you need to authenticate your 
 application. This sample includes an simple Oauth2 server which can issue an 
 access token for an Wordpress user. Therefor you have to submit your username 
-and password with Basic authorization to the token endpoint.</p>
+and password with a Authorization header <code>Basic base64_encode('username:password')</code>
+to the token endpoint.</p>
 
 <pre><code class="http">POST /api/token HTTP/1.1
 User-Agent: Lynx 2.8.7
