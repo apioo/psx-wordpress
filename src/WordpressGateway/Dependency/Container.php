@@ -2,25 +2,25 @@
 
 namespace WordpressGateway\Dependency;
 
-use PSX\Dependency\DefaultContainer;
-use PSX\Oauth2\Provider\GrantTypeFactory;
+use PSX\Framework\Dependency\DefaultContainer;
+use PSX\Framework\Oauth2\GrantTypeFactory;
 use WordpressGateway\Authentication\ClientCredentials;
-use WordpressGateway\Service\PostManager;
+use WordpressGateway\Service\Posts;
 
 class Container extends DefaultContainer
 {
-	public function getOauth2GrantTypeFactory()
-	{
-		$factory = new GrantTypeFactory();
-		$factory->add(new ClientCredentials($this->get('connection')));
+    public function getOauth2GrantTypeFactory()
+    {
+        $factory = new GrantTypeFactory();
+        $factory->add(new ClientCredentials($this->get('connection')));
 
-		return $factory;
-	}
+        return $factory;
+    }
 
-	public function getPostManager()
-	{
-		$table = $this->get('table_manager')->getTable('WordpressGateway\Api\Posts\PostTable');
-
-		return new PostManager($table);
-	}
+    public function getPostsService()
+    {
+        return new Posts(
+            $this->get('table_manager')->getTable('WordpressGateway\Table\Posts')
+        );
+    }
 }

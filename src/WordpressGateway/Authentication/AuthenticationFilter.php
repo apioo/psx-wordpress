@@ -4,45 +4,44 @@ namespace WordpressGateway\Authentication;
 
 use Closure;
 use Doctrine\DBAL\Connection;
-use PSX\Dispatch\Filter\Oauth2Authentication;
+use PSX\Framework\Filter\Oauth2Authentication;
 
 class AuthenticationFilter extends Oauth2Authentication
 {
-	protected $connection;
+    protected $connection;
 
-	public function __construct(Connection $connection, Closure $callback)
-	{
-		parent::__construct(function($accessToken){
-			return $this->validate($accessToken);
-		});
+    public function __construct(Connection $connection, Closure $callback)
+    {
+        parent::__construct(function ($accessToken) {
+            return $this->validate($accessToken);
+        });
 
-		$this->connection = $connection;
-		$this->callback   = $callback;
-	}
+        $this->connection = $connection;
+        $this->callback   = $callback;
+    }
 
-	protected function validate($accessToken)
-	{
-		$sql = 'SELECT user_id,
-				       access_token,
-				       expires,
-				       insert_date
-				  FROM wp_access_token
-				 WHERE access_token = :token';
+    protected function validate($accessToken)
+    {
+        $sql = 'SELECT user_id,
+                       access_token,
+                       expires,
+                       insert_date
+                  FROM wp_access_token
+                 WHERE access_token = :token';
 
-		$accessToken = $this->connection->fetchAssoc($sql, array('token' => $accessToken));
+        $accessToken = $this->connection->fetchAssoc($sql, array('token' => $accessToken));
 
-		if(!empty($accessToken))
-		{
-			// @TODO check expire date etc.
+        if (!empty($accessToken)) {
+            // @TODO check expire date etc.
 
-			// call the callback so that the controller knows the assigned user.
-			// Instead of an id this could also be an user object or something  
-			// else which represents the user
-			call_user_func($this->callback, $accessToken['user_id']);
+            // call the callback so that the controller knows the assigned user.
+            // Instead of an id this could also be an user object or something
+            // else which represents the user
+            call_user_func($this->callback, $accessToken['user_id']);
 
-			return true;
-		}
+            return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 }

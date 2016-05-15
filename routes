@@ -1,13 +1,13 @@
 
 # API
 GET|POST|PUT|DELETE /                            ~/api/posts
-GET|POST|PUT|DELETE /api/posts                   WordpressGateway\Api\Posts\Endpoint\Collection
-GET|POST|PUT|DELETE /api/posts/:id               WordpressGateway\Api\Posts\Endpoint\Entity
-GET|POST            /api/token                   WordpressGateway\Api\Authentication\Endpoint\Token
+GET|POST|PUT|DELETE /posts                       WordpressGateway\Api\Posts\Collection
+GET|POST|PUT|DELETE /posts/:id                   WordpressGateway\Api\Posts\Entity
+GET|POST            /token                       WordpressGateway\Api\Authentication\Token
 
 # documentation
-GET                 /doc                         WordpressGateway\Api\Posts\Endpoint\Documentation::doIndex
-GET                 /doc/:version/*path          WordpressGateway\Api\Posts\Endpoint\Documentation::doDetail
-GET                 /tool/wsdl/:version/*path    PSX\Controller\Tool\WsdlGeneratorController
-GET                 /tool/swagger/:version/*path PSX\Controller\Tool\SwaggerGeneratorController::doDetail
-GET                 /tool/raml/:version/*path    PSX\Controller\Tool\RamlGeneratorController
+GET                 /doc                         PSX\Framework\Controller\Tool\DocumentationController::doIndex
+GET                 /doc/:version/*path          PSX\Framework\Controller\Tool\DocumentationController::doDetail
+GET                 /tool/wsdl/:version/*path    PSX\Framework\Controller\Generator\WsdlController
+GET                 /tool/swagger/:version/*path PSX\Framework\Controller\Generator\SwaggerController::doDetail
+GET                 /tool/raml/:version/*path    PSX\Framework\Controller\Generator\RamlController
